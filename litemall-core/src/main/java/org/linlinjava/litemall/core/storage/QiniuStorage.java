@@ -5,6 +5,8 @@ import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.io.Resource;
@@ -93,7 +95,7 @@ public class QiniuStorage implements Storage {
     @Override
     public Resource loadAsResource(String keyName) {
         try {
-            URL url = new URL(generateUrl(keyName));
+            URL url = Urls.create(generateUrl(keyName), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             Resource resource = new UrlResource(url);
             if (resource.exists() || resource.isReadable()) {
                 return resource;
