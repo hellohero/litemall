@@ -61,7 +61,7 @@ public class WxHomeController {
 
     @GetMapping("/cache")
     public Object cache(@NotNull String key) {
-        if (!key.equals("litemall_cache")) {
+        if (!"litemall_cache".equals(key)) {
             return ResponseUtil.fail();
         }
 
