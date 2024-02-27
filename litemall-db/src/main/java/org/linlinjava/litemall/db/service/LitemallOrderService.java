@@ -1,6 +1,7 @@
 package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
+import java.security.SecureRandom;
 import org.linlinjava.litemall.db.dao.LitemallOrderMapper;
 import org.linlinjava.litemall.db.dao.OrderMapper;
 import org.linlinjava.litemall.db.domain.LitemallOrder;
@@ -43,7 +44,7 @@ public class LitemallOrderService {
 
     private String getRandomNum(Integer num) {
         String base = "0123456789";
-        Random random = new Random();
+        Random random = new SecureRandom();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < num; i++) {
             int number = random.nextInt(base.length());
