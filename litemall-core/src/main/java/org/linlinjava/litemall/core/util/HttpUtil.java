@@ -1,5 +1,7 @@
 package org.linlinjava.litemall.core.util;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -33,7 +35,7 @@ public class HttpUtil {
         BufferedReader in = null;
         StringBuilder result = new StringBuilder();
         try {
-            URL realUrl = new URL(url);
+            URL realUrl = Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             HttpURLConnection conn = (HttpURLConnection) realUrl.openConnection();
             // 发送POST请求必须设置如下两行
             conn.setDoOutput(true);
