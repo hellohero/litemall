@@ -1,5 +1,6 @@
 package org.linlinjava.litemall.admin.web;
 
+import io.github.pixee.security.Filenames;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -47,7 +48,7 @@ public class AdminStorageController {
     @RequiresPermissionsDesc(menu = {"系统管理", "对象存储"}, button = "上传")
     @PostMapping("/create")
     public Object create(@RequestParam("file") MultipartFile file) throws IOException {
-        String originalFilename = file.getOriginalFilename();
+        String originalFilename = Filenames.toSimpleFileName(file.getOriginalFilename());
         LitemallStorage litemallStorage = storageService.store(file.getInputStream(), file.getSize(),
                 file.getContentType(), originalFilename);
         return ResponseUtil.ok(litemallStorage);
