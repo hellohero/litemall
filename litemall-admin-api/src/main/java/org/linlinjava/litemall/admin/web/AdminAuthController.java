@@ -147,7 +147,7 @@ public class AdminAuthController {
             String api = systemPermissionsMap.get(perm);
             apis.add(api);
 
-            if (perm.equals("*")) {
+            if ("*".equals(perm)) {
                 apis.clear();
                 apis.add("*");
                 return apis;

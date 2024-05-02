@@ -34,10 +34,10 @@ public class NotifyAutoConfiguration {
 
         NotifyProperties.Sms smsConfig = properties.getSms();
         if (smsConfig.isEnable()) {
-            if(smsConfig.getActive().equals("tencent")) {
+            if("tencent".equals(smsConfig.getActive())) {
                 notifyService.setSmsSender(tencentSmsSender());
             }
-            else if(smsConfig.getActive().equals("aliyun")) {
+            else if("aliyun".equals(smsConfig.getActive())) {
                 notifyService.setSmsSender(aliyunSmsSender());
             }
 
