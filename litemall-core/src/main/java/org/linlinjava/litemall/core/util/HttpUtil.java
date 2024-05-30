@@ -1,5 +1,6 @@
 package org.linlinjava.litemall.core.util;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -70,7 +71,7 @@ public class HttpUtil {
             in = new BufferedReader(
                     new InputStreamReader(conn.getInputStream(), "UTF-8"));
             String line;
-            while ((line = in.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                 result.append(line);
             }
         } catch (Exception e) {
