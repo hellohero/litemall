@@ -2,6 +2,7 @@ package org.linlinjava.litemall.db.service;
 
 import com.alibaba.druid.util.StringUtils;
 import com.github.pagehelper.PageHelper;
+import java.security.SecureRandom;
 import org.linlinjava.litemall.db.dao.LitemallCouponMapper;
 import org.linlinjava.litemall.db.dao.LitemallCouponUserMapper;
 import org.linlinjava.litemall.db.domain.*;
@@ -146,7 +147,7 @@ public class LitemallCouponService {
         String base = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         base += "0123456789";
 
-        Random random = new Random();
+        Random random = new SecureRandom();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < num; i++) {
             int number = random.nextInt(base.length());
