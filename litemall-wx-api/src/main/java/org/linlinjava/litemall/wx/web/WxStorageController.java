@@ -1,5 +1,6 @@
 package org.linlinjava.litemall.wx.web;
 
+import io.github.pixee.security.Filenames;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.core.storage.StorageService;
@@ -52,7 +53,7 @@ public class WxStorageController {
 
     @PostMapping("/upload")
     public Object upload(@RequestParam("file") MultipartFile file) throws IOException {
-        String originalFilename = file.getOriginalFilename();
+        String originalFilename = Filenames.toSimpleFileName(file.getOriginalFilename());
         LitemallStorage litemallStorage = storageService.store(file.getInputStream(), file.getSize(), file.getContentType(), originalFilename);
         return ResponseUtil.ok(litemallStorage);
     }
