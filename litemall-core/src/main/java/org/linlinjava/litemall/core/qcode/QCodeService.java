@@ -1,6 +1,8 @@
 package org.linlinjava.litemall.core.qcode;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -108,7 +110,7 @@ public class QCodeService {
 
 
         //商品图片
-        URL goodPic = new URL(goodPicUrl);
+        URL goodPic = Urls.create(goodPicUrl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         BufferedImage goodImage = ImageIO.read(goodPic);
 
         //小程序二维码
